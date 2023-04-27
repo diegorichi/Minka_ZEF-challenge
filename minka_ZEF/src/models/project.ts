@@ -35,7 +35,7 @@ export class Project {
   @ManyToOne(() => Currency)
   currency!: Currency
 
-  @Column({type:"bigint", precision: 30, scale: 4 })
+  @Column({type:"bigint" })
   balance!: number;
 
   @OneToMany(() => Transaction, transaction => transaction.project)

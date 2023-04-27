@@ -32,6 +32,7 @@ const connectDB = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   logging: true,
+  synchronize: true,
   entities: ["./src/models/**/*.ts"],
   ssl: false,
 });

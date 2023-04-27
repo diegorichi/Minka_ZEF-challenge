@@ -18,10 +18,10 @@ export class Currency extends BaseEntity {
   @Column()
   code!: string;
 
-  @Column({type:"bigint", precision: 30, scale: 4 })
+  @Column({type:"bigint"})
   totalQuantity!: number;
 
-  @Column({type:"bigint", precision: 30, scale: 4 })
+  @Column({type:"bigint"})
   totalAvailable!: number;
 
   @Column({ type: "numeric", precision: 14, scale: 4 })
