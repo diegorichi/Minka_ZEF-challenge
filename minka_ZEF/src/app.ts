@@ -5,6 +5,7 @@ import cors from "cors";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import userRoutes from "./routes/users.routes";
+import loginRoutes from "./routes/login.routes";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(loginRoutes);
 app.use(userRoutes);
 
 app.get("/", (req: Request, res: Response) => {
