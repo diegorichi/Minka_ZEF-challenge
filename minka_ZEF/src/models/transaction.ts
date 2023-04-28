@@ -5,6 +5,7 @@ import {
   JoinColumn,
   OneToOne,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 import { User } from "./user";
 import { Account } from "./account";
@@ -20,7 +21,7 @@ enum TransactionType {
 
 
 @Entity()
-export class Transaction {
+export class Transaction  extends BaseEntity{
   @PrimaryGeneratedColumn()
   id!: number;
 

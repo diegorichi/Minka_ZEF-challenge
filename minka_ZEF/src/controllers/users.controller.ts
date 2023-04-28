@@ -58,12 +58,17 @@ export const createUser = async (
       user.name = name;
       user.email = email;
       user.password = password;
+      await user.save();
 
       if (role === "member"){
         const member = new Member();
         member.user = user;
-        member.account = new Account();
+        const account = new Account();
+        account.balance = 0;
+        account.user = user;
+        member.account = account;
         member.type = type;
+        account.save()
         await member.save();
       }
       if (role === "domainOwner"){
@@ -71,7 +76,6 @@ export const createUser = async (
         domainOwner.user = user;
         await domainOwner.save();
       }
-      await user.save();
 
       res.status(201).json(user);
     }

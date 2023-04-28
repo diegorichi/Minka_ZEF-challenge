@@ -4,13 +4,14 @@ import {
   OneToMany,
   JoinColumn,
   OneToOne,
+  BaseEntity,
 } from "typeorm";
 import { User } from "./user";
 import { Currency } from "./currency";
 
 
 @Entity()
-export class DomainOwner {
+export class DomainOwner  extends BaseEntity{
   @PrimaryGeneratedColumn()
   id!: number;
 

@@ -49,3 +49,21 @@ connectDB
   });
 
 export default connectDB;
+
+
+import * as redis from 'redis';
+
+export const redisClient = redis.createClient({
+  socket: { 
+    port: 6379,//parseInt(process.env.REDIS_PORT!, 10),
+    host: "localhost"//process.env.REDIS_HOST
+  },
+  //username: "redis_user",//process.env.REDIS_USER,
+  password: "supersecretpassword"//process.env.REDIS_PASSWORD
+});
+
+redisClient.on("connect", function () {
+    console.log("Redis plugged in.");
+});
+
+redisClient.connect();

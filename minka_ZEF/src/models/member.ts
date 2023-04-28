@@ -6,19 +6,21 @@ import {
   OneToMany,
   JoinColumn,
   OneToOne,
+  BaseEntity,
 } from "typeorm";
 import { User } from "./user";
 import { Project } from "./project";
 import { Account } from "./account";
 
+type UserType = "individual" | "company";
 
 @Entity()
-export class Member {
+export class Member extends BaseEntity{
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  type!: string; // 'individual' or 'company'
+  type!: UserType; // 'individual' or 'company'
 
   @ManyToOne(() => Account, { eager: true })
   account!: Account;
