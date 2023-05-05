@@ -5,6 +5,6 @@ import { login, logout } from "../controllers/login.controller";
 const router = Router();
 
 router.post("/login", login);
-router.get("/logout",verifyToken, logout);
+router.post("/logout",verifyToken, logout);
 
 export default router;

@@ -10,18 +10,37 @@ import {
 import { User } from "./user";
 import { Account } from "./account";
 import { Project } from "./project";
+import { DepositStrategy, EarningStrategy, InvestmentStrategy, WithdrawStrategy } from "./transaction.strategy";
 
 
-enum TransactionType {
-  DEPOSIT = 'deposit', // related to account
-  WITHDRAW = 'withdraw',  // related to account
-  INVESTMENT = 'investment', // related to project
-  EARNING = 'earning' // related to project
+export enum TransactionType {
+  DEPOSIT = 'deposit', // to account
+  WITHDRAW = 'withdraw',  // from account
+  INVESTMENT = 'investment', // from account to project
+  EARNING = 'earning' // from project to account
 }
 
+export const transactionStrategies = {
+  [TransactionType.DEPOSIT]: new DepositStrategy(),
+  [TransactionType.WITHDRAW]: new WithdrawStrategy(),
+  [TransactionType.INVESTMENT]: new InvestmentStrategy(),
+  [TransactionType.EARNING]: new EarningStrategy(),
+};
+
+type TransactionTypeKey = keyof typeof transactionStrategies;
 
 @Entity()
-export class Transaction  extends BaseEntity{
+export class Transaction extends BaseEntity{
+  execute():void {
+      const strategy = transactionStrategies[this.type as TransactionTypeKey];
+  
+      if (!strategy) {
+        throw new Error('Invalid transaction type.');
+      }
+  
+      strategy.execute(this);
+  }
+
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -29,13 +48,13 @@ export class Transaction  extends BaseEntity{
   @JoinColumn()
   user!: User;
 
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date!: Date;
 
   @Column({ type: 'enum', enum: TransactionType })
   type!: string;
 
-  @Column()
+  @Column({ type: "numeric", precision: 10, scale: 2})
   amount!: number;
 
   @ManyToOne(() => Account)

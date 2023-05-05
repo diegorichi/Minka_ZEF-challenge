@@ -13,12 +13,6 @@ import { Transaction } from "./transaction";
 import { Currency } from "./currency";
 
 
-enum TransactionType {
-  DEPOSIT = 'deposit',
-  WITHDRAW = 'withdraw',
-  INVESTMENT = 'investment',
-  EARNING = 'earning'
-}
 
 
 @Entity()
@@ -26,17 +20,21 @@ export class Project  extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @OneToOne(() => Member)
+  @Column()
+  name!: string
+
+  @Column({nullable : true})
+  description!: string
+
+  @OneToOne(() => Member, { nullable: false })
   @JoinColumn()
   owner!: Member;
 
-  @Column()
-  date!: Date;
-
-  @ManyToOne(() => Currency)
+  @ManyToOne(() => Currency, { nullable: false })
+  @JoinColumn()
   currency!: Currency
 
-  @Column({type:"bigint" })
+  @Column({ type: "numeric", precision: 10, scale: 2})
   balance!: number;
 
   @OneToMany(() => Transaction, transaction => transaction.project)

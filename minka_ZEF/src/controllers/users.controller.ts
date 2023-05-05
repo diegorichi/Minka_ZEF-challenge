@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { User } from "../models/user";
-import { createHash } from "crypto";
-import { sign } from "jsonwebtoken";
 import { Member } from "../models/member";
 import { Account } from "../models/account";
 import { DomainOwner } from "../models/domainOwner";
@@ -76,7 +74,7 @@ export const createUser = async (
         domainOwner.user = user;
         await domainOwner.save();
       }
-
+      delete user.password
       res.status(201).json(user);
     }
   } catch (error) {

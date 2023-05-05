@@ -13,18 +13,18 @@ export class Currency extends BaseEntity {
   id!: number;
 
   @Column()
-  name!: string;  
+  name!: string;
   
   @Column()
   code!: string;
 
-  @Column({type:"bigint"})
+  @Column({ type: "numeric", precision: 10, scale: 2})
   totalQuantity!: number;
 
-  @Column({type:"bigint"})
+  @Column({ type: "numeric", precision: 10, scale: 2 })
   totalAvailable!: number;
 
-  @Column({ type: "numeric", precision: 14, scale: 4 })
+  @Column({ type: "numeric", precision: 10, scale: 4 })
   parity!: number;
 
   @ManyToOne(() => User)

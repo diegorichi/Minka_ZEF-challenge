@@ -4,26 +4,42 @@ import dotenv from "dotenv";
 import cors from "cors";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import userRoutes from "./routes/users.routes";
+import * as redis from "redis";
 import loginRoutes from "./routes/login.routes";
+import projectRoutes from "./routes/project.routes";
+import currencyRoutes from "./routes/currency.routes";
+import { logger } from "./utils/logging";
+import requestTimeLogger from "./utils/requestTimeLogger";
+import responseTime from "response-time";
+import userRoutes from "./routes/user.routes";
 
 dotenv.config();
 
 const app = express();
+app.use(responseTime());
+app.use(requestTimeLogger);
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(loginRoutes);
 app.use(userRoutes);
+app.use(projectRoutes);
+app.use(currencyRoutes);
+app.use(projectRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Welcome to ZEF!");
+});
+
+app.use(function (req, res, next) {
+  res.status(404).send({ message: "Lo siento, no se encontró la página" });
+  logger.error(`404 error: ${req.originalUrl}`);
 });
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  logger.info(`Server listening on port ${PORT}`);
 });
 
 const connectDB = new DataSource({
@@ -42,28 +58,25 @@ const connectDB = new DataSource({
 connectDB
   .initialize()
   .then(() => {
-    console.log(`Data Source has been initialized`);
+    logger.info(`Data Source has been initialized`);
   })
   .catch((err) => {
-    console.error(`Data Source initialization error`, err);
+    logger.error(`Data Source initialization error`, err);
   });
 
 export default connectDB;
 
-
-import * as redis from 'redis';
-
 export const redisClient = redis.createClient({
-  socket: { 
-    port: 6379,//parseInt(process.env.REDIS_PORT!, 10),
-    host: "localhost"//process.env.REDIS_HOST
+  socket: {
+    port: 6379, //parseInt(process.env.REDIS_PORT!, 10),
+    host: "localhost", //process.env.REDIS_HOST
   },
   //username: "redis_user",//process.env.REDIS_USER,
-  password: "supersecretpassword"//process.env.REDIS_PASSWORD
+  password: "supersecretpassword", //process.env.REDIS_PASSWORD
 });
 
 redisClient.on("connect", function () {
-    console.log("Redis plugged in.");
+  logger.info("Redis plugged in.");
 });
 
 redisClient.connect();
