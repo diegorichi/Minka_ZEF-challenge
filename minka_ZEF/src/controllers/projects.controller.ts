@@ -1,129 +1,125 @@
 import { Request, Response } from "express";
-import { Project } from "../models/project";
+import { Project } from "../models/project.entity";
 import { FindOneOptions } from "typeorm";
-import { Currency } from "../models/currency";
-import { Member } from "../models/member";
+import { Logger } from "../utils/logger";
+import { verifyToken } from "../middleware/zef.middleware";
+import { body, param, validationResult } from "express-validator";
+import {
+  controller,
+  httpGet,
+  httpPost,
+  httpPut,
+  httpDelete,
+} from "inversify-express-utils";
+import { inject } from "inversify";
+import { ProjectService } from "../services/project.service";
 
+@controller("/projects", verifyToken)
+export class ProjectController {
+  constructor(
+    @inject(Logger) private logger: Logger,
+    @inject(ProjectService) private projectService: ProjectService
+  ) {}
 
-export const getAllProjects = async (_req: Request, res: Response) => {
-    try {
-      const projects = await Project.find();
-      res.json(projects);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
+  @httpPost("",
+    body("name").notEmpty(),
+    body("currency").isInt(),
+    body("currency").notEmpty()
+  )
+  public async createProject(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-  };
-
-export const getProject = async (req: Request, res: Response) => {
     try {
-      const  { id } = req.params;
-      const options: FindOneOptions<Project> = {
-        relations: ['owner', 'currency', 'transations'],
-        where: {id: parseInt(id)}
-        };
-      const project = await Project.findOne(options);
+      const { name, owner, currency, description } = req.body;
+
+      const userId = req.user ? req.user.id : undefined;
+
+      const newProject = await this.projectService.createProject(
+        name,
+        userId,
+        currency,
+        description
+      );
+
+      if (!newProject) {
+        return res.status(400).json();
+      }
+      return res.status(200).send(newProject);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).json(err.message);
+    }
+  }
+
+  @httpGet("")
+  public async getAllProjects(req: Request, res: Response): Promise<Response> {
+    try {
+      const projects = await this.projectService.getProjects();
+      return res.status(200).json(projects);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
+    }
+  }
+
+  @httpGet("/:id", param("id").isInt({ min: 1 }))
+  public async getProject(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const { id } = req.params;
+      const project = await this.projectService.getProject(id);
       if (!project) {
-        res.status(404).send('Project not found');
+        return res.status(404).send("Project not found");
       } else {
-        res.json(project);
+        return res.status(200).json(project);
       }
     } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
     }
-  };
+  }
 
-  export const postProject = async (req: Request, res: Response) => {
+  @httpDelete("/:id", param("id").isInt({ min: 1 }))
+  public async deleteProject(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     try {
-      const { name, owner, currency } = req.body;
+      const { id } = req.params;
 
-      if (!owner){
-        return res.status(400).send('Owner required');
-      }
-      if (!currency){
-        return res.status(400).send('Currency required');
-      }
-      if (!name || name.length < 3) {
-        return res.status(400).send('Name missing or too short');
-      }
-      let options = {id:owner}
-      await Member.findOneBy(options).then(
-        async (finded: any) => {
-            if (!finded) {
-                return res.status(400).send('Owner not found');
-            }
-        }
-      ).then( async () => {
-      options = {id:currency}
-      await Currency.findOneBy(options).then(
-        (finded: any) => {
-            if (!finded) {
-                return res.status(400).send('Currency not found');
-            }
-        })
-    }).then( async () => {
-        const project = new Project();
-        project.name = name;
-        project.owner = owner;
-        project.currency = currency;
-        project.balance = 0;
-    
-        const newProject = await Project.save(project);
-        return res.status(200).send(newProject);
-    }
-    );
-
+      await this.projectService.deleteProject(id);
+      return res.status(200).send("Project deleted successfully");
     } catch (err) {
-      console.error(err);
-      res.status(500)
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
     }
-  };
+  }
 
-  export const putProject = async (req: Request, res: Response) => {
+  @httpPut("/:id", param("id").isInt({ min: 1 }))
+  public async putProject(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     try {
       const { id } = req.params;
       const { owner, currency, transations } = req.body;
-  
-      const options: FindOneOptions<Project> = {
-        where: {id: parseInt(id)}
-        };
-      const project = await Project.findOne(options);
-
-      if (!project) {
-        res.status(404).send('Project not found');
-        return;
-      }
-  
-      project.owner = owner;
-      project.currency = currency;
-      project.transations = transations;
-  
-      const updatedProject = await Project.save(project);
-      res.json(updatedProject);
+      const updatedProject = this.projectService.updateProject(
+        parseInt(id),
+        owner,
+        currency,
+        transations
+      );
+      return res.status(200).json(updatedProject);
     } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
     }
-  };
-
-  export const deleteProject = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      const options: FindOneOptions<Project> = {
-        where: {id: parseInt(id)}
-        };
-      const project = await Project.findOne(options);
-      if (!project) {
-        res.status(404).send('Project not found');
-        return;
-      }
-  
-      await Project.remove(project);
-      res.send('Project deleted successfully');
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
-    }
-  };
-  
+  }
+}

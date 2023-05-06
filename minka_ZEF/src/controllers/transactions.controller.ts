@@ -1,75 +1,73 @@
 import { Request, Response } from "express";
-import { Transaction } from "../models/transaction";
-import { TransactionType } from "../models/transaction";
-import { FindOneOptions } from "typeorm";
-import { logger } from "../utils/logging";
-import { User } from "../models/user";
-import { Project } from "../models/project";
+import { TransactionType } from "../models/transaction.entity";
+import { verifyToken } from "../middleware/zef.middleware";
+import { Logger } from "../utils/logger";
+import { controller, httpGet, httpPost } from "inversify-express-utils";
+import { inject } from "inversify";
+import { TransactionService } from "../services/transaction.service";
+import { body, param, validationResult } from "express-validator";
 
-export const getTransaction = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const options: FindOneOptions<Transaction> = {
-      relations: ["user", "account", "project"],
-      where: { id: parseInt(id) },
-    };
-    const transaction = await Transaction.findOne(options);
-    if (!transaction) {
-      res.status(404).send("Transaction not found");
-    } else {
-      res.json(transaction);
+@controller("/transactions", verifyToken)
+export class TransactionController {
+  constructor(
+    @inject(Logger) private logger: Logger,
+    @inject(TransactionService) private transactionService: TransactionService
+  ) {}
+
+  @httpGet("/:id", param("id").isInt({ min: 1 }))
+  public async getTransaction(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-  } catch (err) {
-    logger.error(err);
-    res.status(500).send("Internal server error");
-  }
-};
+    try {
+      const { id } = req.params;
 
-export const postTransaction = async (req: Request, res: Response) => {
-  try {
-    const { type, amount, project } = req.body;
+      const transaction = await this.transactionService.getTransaction(id);
 
-    if (
-      !type ||
-      !amount ||
-      ((type == TransactionType.INVESTMENT ||
-        type == TransactionType.EARNING) &&
-        (!project || project < 1)) ||
-      !(type in TransactionType) ||
-      amount <= 0
-    ) {
-      return res.status(400).send("something is missing");
-    }
-
-    const transaction = new Transaction();
-
-    let options = { id: req.user.id };
-    const user = await User.findOneBy(options).then(async (userFinded: any) => {
-      if (!userFinded) {
-        return res.status(400).send("User not found");
+      if (!transaction) {
+        return res.status(404).send("Transaction not found");
       } else {
-        transaction.user = userFinded;
-        transaction.account = userFinded.account;
+        return res.status(200).json(transaction);
       }
-    });
-    options = { id: project };
-    const aProject = await Project.findOneBy(options).then(
-      async (projectFinded: any) => {
-        if (!projectFinded) {
-          return res.status(400).send("User not found");
-        } else transaction.project = projectFinded;
-      }
-    );
-
-    transaction.type = type;
-    transaction.amount = amount;
-
-    transaction.execute();
-
-    const newTransaction = await Transaction.save(transaction);
-    return res.status(200).send(newTransaction);
-  } catch (err) {
-    logger.error(err);
-    res.status(500);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
+    }
   }
-};
+
+  @httpPost(
+    "",
+    body("type").isIn([TransactionType.INVESTMENT, TransactionType.EARNING,
+      TransactionType.DEPOSIT, TransactionType.WITHDRAW,
+    ]),
+    body("amount").isFloat(),
+    body("amount").notEmpty(),
+    body("project").optional().isInt(),
+  )
+  public async createTransaction(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const { type, amount, project } = req.body;
+
+      const userId = req.user ? req.user.id : undefined;
+      const newTransaction = await this.transactionService.createTransaction(
+        type,
+        amount,
+        project,
+        userId
+      );
+
+      return res.status(200).send(newTransaction);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500);
+    }
+  }
+}

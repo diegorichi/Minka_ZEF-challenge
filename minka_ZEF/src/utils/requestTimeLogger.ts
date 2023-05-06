@@ -1,10 +1,17 @@
 import { NextFunction } from "express";
-import { logger } from "./logging";
+import { container } from "../index";
+import { Logger } from "./logger";
 
-export default function requestTimeLogger(req: any, res: any, next: NextFunction) {
+export default function requestTimeLogger(
+  req: any,
+  res: any,
+  next: NextFunction
+) {
   const start = Date.now();
 
-  res.on('finish', () => {
+  res.on("finish", () => {
+    const logger = container.resolve<Logger>(Logger);
+
     const duration = Date.now() - start;
     const message = `${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms`;
 
@@ -12,4 +19,4 @@ export default function requestTimeLogger(req: any, res: any, next: NextFunction
   });
 
   next();
-};
+}

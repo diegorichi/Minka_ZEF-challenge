@@ -1,142 +1,136 @@
 import { Request, Response } from "express";
-import { Currency } from "../models/currency";
-import { FindOneOptions } from "typeorm";
-import { logger } from "../utils/logging";
-import { User } from "../models/user";
-import { DomainOwner } from "../models/domainOwner";
+import { Logger } from "../utils/logger";
+import { verifyToken } from "../middleware/zef.middleware";
+import { body, param, validationResult } from "express-validator";
+import {
+  controller,
+  httpGet,
+  httpPost,
+  httpPut,
+  httpDelete,
+} from "inversify-express-utils";
+import { inject } from "inversify";
 
-export const getAllCurrencys = async (_req: Request, res: Response) => {
-  try {
-    const currencys = await Currency.find();
-    res.json(currencys);
-  } catch (err) {
-    logger.error(err);
-    res.status(500).send("Internal server error");
+import { CurrencyService } from "../services/currency.service";
+
+@controller("/currencies", verifyToken)
+export class CurrencyController {
+  constructor(
+    @inject(Logger) private logger: Logger,
+    @inject(CurrencyService) private currencyService: CurrencyService
+  ) {}
+
+  @httpGet("")
+  public async getAllCurrencies(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    try {
+      const projects = await this.currencyService.findAll();
+      return res.status(200).json(projects);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
+    }
   }
-};
 
-export const getCurrency = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const options: FindOneOptions<Currency> = {
-      relations: ["owner", "currency", "transations"],
-      where: { id: parseInt(id) },
-    };
-    const currency = await Currency.findOne(options);
-    if (!currency) {
-      res.status(404).send("Currency not found");
-    } else {
-      res.json(currency);
+  @httpGet("/:id", param("id").isInt({ min: 1 }))
+  public async getCurrency(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-  } catch (err) {
-    logger.error(err);
-    res.status(500).send("Internal server error");
+    try {
+      const { id } = req.params;
+      const currency = this.currencyService.getCurrency(id);
+      if (!currency) return res.status(404).send("not found");
+
+      return res.status(200).send(currency);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
+    }
   }
-};
 
-export const postCurrency = async (req: Request, res: Response) => {
-  try {
-    const { name, code, owner, parity } = req.body;
+  @httpPost(
+    "",
+    body("name").isLength({ min: 3 }),
+    body("code").isLength({ min: 3 }),
+    body("parity").isFloat({ gt: 0 }),
+    body("parity").notEmpty()
+  )
+  public async createCurrency(req: Request, res: Response): Promise<Response> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const { name, code, parity } = req.body;
+      const userId = req.user ? req.user.id : undefined;
 
-    if (!owner) {
-      return res.status(400).send("Owner required");
+      const currency = await this.currencyService.createCurrency(
+        name,
+        code,
+        parity,
+        userId
+      );
+      return res.status(200).send(currency);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
     }
-    if (!parity) {
-      return res.status(400).send("Parity required");
-    }
-    if (!name || name.length < 3) {
-      return res.status(400).send("Name missing or too short");
-    }
-    if (!code || code.length < 3) {
-      return res.status(400).send("Code missing or too short");
-    }
-    let options = { id: owner };
-    await User.findOneBy(options)
-      .then(async (finded: any) => {
-        if (!finded) {
-          return res.status(400).send("Owner not found");
-        }
-      })
-      .then(async () => {
-        const parityN = Number(parity);
-        const currency = new Currency();
-        currency.name = name;
-        currency.code = code;
-        currency.owner = owner;
-        if (parityN>0){
-          currency.parity = parityN;   
-        }
-        currency.totalAvailable = 0;
-        currency.totalQuantity = 0;
-
-        const newCurrency = await Currency.save(currency);
-        return res.status(200).send(newCurrency);
-      });
-  } catch (err) {
-    logger.error(err);
-    res.status(500);
   }
-};
 
-export const putCurrency = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const { name, code, quantity, parity } = req.body;
-    const parsedQuantity = Number(quantity);
-    const parsedParity = Number(parity);
-
-    const options: FindOneOptions<Currency> = {
-      where: { id: parseInt(id) },
-    };
-    const currency = await Currency.findOne(options);
-    if (!currency) {
-      res.status(404).send("Currency not found");
-      return;
+  @httpPut(
+    "/:id",
+    param("id").isInt(),
+    body("quantity").isFloat(),
+    body("quantity").notEmpty()
+  )
+  public async updateCurrency(req: Request, res: Response) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-    currency.name = name ? name : currency.name;
-    currency.code = code ? code : currency.code;
-    currency.parity = parsedParity ? parsedParity : currency.parity;
+    try {
+      const { id } = req.params;
+      const { name, code, quantity, parity } = req.body;
 
-    const userId = req.user ? req.user.id : undefined;
+      const userId = req.user ? req.user.id : undefined;
 
-    const optionsDomainOwner: FindOneOptions<DomainOwner> = {
-      where: { user: {id: parseInt(userId )}},
-    };
+      const currency = await this.currencyService.updateCurrency(
+        parseInt(id),
+        userId,
+        name,
+        code,
+        quantity,
+        parity
+      );
 
-    await DomainOwner.findOne(optionsDomainOwner).then((domainOwner) => {
-      if (domainOwner){
-        const total = Number(currency.totalQuantity);
-        if (parsedQuantity && (total + parsedQuantity >= 0)){
-          currency.totalQuantity = total + parsedQuantity
-        }
+      if (!currency) {
+        return res.status(404).send("Currency not found");
       }
-    });
-
-    const updatedCurrency = await Currency.save(currency);
-    res.json(updatedCurrency);
-  } catch (err) {
-    logger.error(err);
-    res.status(500).send("Internal server error");
-  }
-};
-
-export const deleteCurrency = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const options: FindOneOptions<Currency> = {
-      where: { id: parseInt(id) },
-    };
-
-    const currency = await Currency.findOne(options);
-    if (!currency) {
-      res.status(404).send("Currency not found");
-      return;
+      return res.status(200).json(currency);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
     }
-
-    await Currency.remove(currency);
-    res.send("Currency deleted successfully");
-  } catch (err) {
-    logger.error(err);
-    res.status(500).send("Internal server error");
   }
-};
+
+  @httpDelete(
+    "/:id",
+    param("id").isInt()
+  )
+  public async deleteCurrency(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+     
+      this.currencyService.deleteCurrency(id);
+
+      return res.send("Currency deleted successfully");
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).send("Internal server error");
+    }
+  };
+}

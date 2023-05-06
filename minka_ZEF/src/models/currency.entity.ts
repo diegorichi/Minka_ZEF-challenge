@@ -5,7 +5,7 @@ import {
   BaseEntity,
   ManyToOne,
 } from "typeorm";
-import { User } from "./user";
+import { User } from "./user.entity";
 
 @Entity()
 export class Currency extends BaseEntity {
@@ -14,11 +14,11 @@ export class Currency extends BaseEntity {
 
   @Column()
   name!: string;
-  
+
   @Column()
   code!: string;
 
-  @Column({ type: "numeric", precision: 10, scale: 2})
+  @Column({ type: "numeric", precision: 10, scale: 2 })
   totalQuantity!: number;
 
   @Column({ type: "numeric", precision: 10, scale: 2 })
@@ -27,7 +27,6 @@ export class Currency extends BaseEntity {
   @Column({ type: "numeric", precision: 10, scale: 4 })
   parity!: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, {eager:true})
   owner!: User;
-
 }

@@ -1,3 +1,825 @@
-[2023-05-05T00:59:47.526Z] [MacBook-Pro-de-Diego.local] [INFO]: Server listening on port 3000
-[2023-05-05T00:59:47.529Z] [MacBook-Pro-de-Diego.local] [INFO]: Redis plugged in.
-[2023-05-05T00:59:47.656Z] [MacBook-Pro-de-Diego.local] [INFO]: Data Source has been initialized
+[2023-05-05T20:57:03.277Z] [MacBook-Pro-de-Diego.local] [INFO]: Data Source has been initialized
+[2023-05-05T20:57:11.362Z] [MacBook-Pro-de-Diego.local] [INFO]: POST /transactions 200 42ms
+pires cache +60min:3"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 38ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 42ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 35ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 73ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 79ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 49ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 17295ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"23503","constraint":"FK_d5e1fdbbc0bc0cbc3fc2e202d7f","detail":"Key (projectId)=(5) is not present in table \"project\".","driverError":{"code":"23503","constraint":"FK_d5e1fdbbc0bc0cbc3fc2e202d7f","detail":"Key (projectId)=(5) is not present in table \"project\".","file":"ri_triggers.c","length":282,"line":"2465","name":"error","routine":"ri_ReportViolation","schema":"public","severity":"ERROR","table":"transaction"},"file":"ri_triggers.c","length":282,"line":"2465","parameters":["deposit",1000,3,1,5],"query":"INSERT INTO \"transaction\"(\"date\", \"type\", \"amount\", \"userId\", \"accountId\", \"projectId\") VALUES (DEFAULT, $1, $2, $3, $4, $5) RETURNING \"id\", \"date\"","routine":"ri_ReportViolation","schema":"public","severity":"ERROR","table":"transaction"}}
+{"level":"info","message":"POST /transactions 500 55563ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 10179ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 82ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 94779ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 78ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"GET /users 200 44ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 401 13ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"GET /users/1 200 40ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 84ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 66ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 4358ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 3715ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 1954ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 1631ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 1787ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"error","message":"Unauthorized: No user stored in cache id:3"}
+{"level":"info","message":"POST /projects 401 52ms"}
+{"level":"debug","message":"starting loggin in"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"user finded:individual3@dr.com"}
+{"level":"info","message":"set cookie and add to cache:individual3@dr.com"}
+{"level":"info","message":"POST /auth/login 200 34ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 77ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 67ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 41ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 47ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /projects 200 37ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 60ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 200 54ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 46ms"}
+{"level":"info","message":"POST /transactions 400 3ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 68ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 64ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"POST /transactions 400 27ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 52ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 72ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 81ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 83ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":97,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":97,"line":"124","parameters":[1125.5,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 90ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"error","message":"Invalid token. User id does not exist: 3"}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"GET /users 403 41ms"}
+{"level":"debug","message":"starting loggin in"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"inexistent user:individual@dr.com"}
+{"level":"info","message":"POST /auth/login 401 41ms"}
+{"level":"info","message":"POST /users 201 78ms"}
+{"level":"info","message":"POST /users 201 68ms"}
+{"level":"info","message":"POST /users 201 44ms"}
+{"level":"debug","message":"starting loggin in"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"user finded:individual@dr.com"}
+{"level":"info","message":"set cookie and add to cache:individual@dr.com"}
+{"level":"info","message":"POST /auth/login 200 28ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /users 200 29ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /users/1 200 26ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /currencies 200 35ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /currencies 400 35ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"numutils.c","length":104,"line":"320","name":"error","routine":"pg_strtoint32","severity":"ERROR"},"file":"numutils.c","length":104,"line":"320","parameters":["blockchain",5.5,"blk",1],"query":"SELECT DISTINCT \"distinctAlias\".\"Currency_id\" AS \"ids_Currency_id\" FROM (SELECT \"Currency\".\"id\" AS \"Currency_id\", \"Currency\".\"name\" AS \"Currency_name\", \"Currency\".\"code\" AS \"Currency_code\", \"Currency\".\"totalQuantity\" AS \"Currency_totalQuantity\", \"Currency\".\"totalAvailable\" AS \"Currency_totalAvailable\", \"Currency\".\"parity\" AS \"Currency_parity\", \"Currency\".\"ownerId\" AS \"Currency_ownerId\", \"Currency__Currency_owner\".\"id\" AS \"Currency__Currency_owner_id\", \"Currency__Currency_owner\".\"name\" AS \"Currency__Currency_owner_name\", \"Currency__Currency_owner\".\"email\" AS \"Currency__Currency_owner_email\" FROM \"currency\" \"Currency\" LEFT JOIN \"user\" \"Currency__Currency_owner\" ON \"Currency__Currency_owner\".\"id\"=\"Currency\".\"ownerId\" WHERE (\"Currency\".\"name\" = $1 AND \"Currency__Currency_owner\".\"id\" = $2 AND \"Currency\".\"code\" = $3 AND \"Currency\".\"parity\" = $4)) \"distinctAlias\" ORDER BY \"Currency_id\" ASC LIMIT 1","routine":"pg_strtoint32","severity":"ERROR"}}
+{"level":"info","message":"POST /currencies 500 49ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /currencies 200 11094ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /users/1 200 41ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /users/2 200 33ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"debug","message":"starting loggin out"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"GET /auth/logout 200 42ms"}
+{"level":"debug","message":"auth header finded"}
+{"level":"debug","message":"removing token from cache user_id: 1"}
+{"level":"debug","message":"removing token from cache"}
+{"level":"debug","message":"logged out"}
+{"level":"debug","message":"starting loggin in"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"user finded:do@dr.com"}
+{"level":"info","message":"set cookie and add to cache:do@dr.com"}
+{"level":"info","message":"POST /auth/login 200 33ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"GET /currencies 200 31ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"PUT /currencies/3 404 46ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"PUT /currencies/1 200 54ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"info","message":"PUT /currencies/1 200 70ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /projects 500 54ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:3"}
+{"level":"debug","message":"starting loggin out"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"GET /auth/logout 200 24ms"}
+{"level":"debug","message":"auth header finded"}
+{"level":"debug","message":"removing token from cache user_id: 3"}
+{"level":"debug","message":"removing token from cache"}
+{"level":"debug","message":"logged out"}
+{"level":"debug","message":"starting loggin in"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"user finded:individual@dr.com"}
+{"level":"info","message":"set cookie and add to cache:individual@dr.com"}
+{"level":"info","message":"POST /auth/login 200 30ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /projects 200 57ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{"code":"22P02","driverError":{"code":"22P02","file":"int8.c","length":96,"line":"124","name":"error","routine":"scanint8","severity":"ERROR"},"file":"int8.c","length":96,"line":"124","parameters":[25.25,1],"query":"UPDATE \"account\" SET \"balance\" = $1 WHERE \"id\" IN ($2)","routine":"scanint8","severity":"ERROR"}}
+{"level":"info","message":"POST /transactions 500 70ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"code":"23502","column":"balance","driverError":{"code":"23502","column":"balance","file":"tablecmds.c","length":148,"line":"5563","name":"error","routine":"ATRewriteTable","schema":"public","severity":"ERROR","table":"account"},"file":"tablecmds.c","length":148,"level":"error","line":"5563","message":"Data Source initialization error column \"balance\" of relation \"account\" contains null values","query":"ALTER TABLE \"account\" ADD \"balance\" numeric(10,4) NOT NULL","routine":"ATRewriteTable","schema":"public","severity":"ERROR","stack":"QueryFailedError: column \"balance\" of relation \"account\" contains null values\n    at PostgresQueryRunner.query (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/query-runner/BaseQueryRunner.ts:659:13)\n    at PostgresQueryRunner.addColumn (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.changeColumn (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:1200:13)\n    at PostgresQueryRunner.changeColumns (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:2249:13)\n    at RdbmsSchemaBuilder.updateExistColumns (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:947:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:228:9)\n    at RdbmsSchemaBuilder.build (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/data-source/DataSource.ts:335:9)","table":"account"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"code":"23502","column":"balance","driverError":{"code":"23502","column":"balance","file":"tablecmds.c","length":148,"line":"5563","name":"error","routine":"ATRewriteTable","schema":"public","severity":"ERROR","table":"account"},"file":"tablecmds.c","length":148,"level":"error","line":"5563","message":"Data Source initialization error column \"balance\" of relation \"account\" contains null values","query":"ALTER TABLE \"account\" ADD \"balance\" numeric(10,4) NOT NULL","routine":"ATRewriteTable","schema":"public","severity":"ERROR","stack":"QueryFailedError: column \"balance\" of relation \"account\" contains null values\n    at PostgresQueryRunner.query (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:299:19)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at PostgresQueryRunner.executeQueries (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/query-runner/BaseQueryRunner.ts:659:13)\n    at PostgresQueryRunner.addColumn (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:1115:9)\n    at PostgresQueryRunner.changeColumn (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:1200:13)\n    at PostgresQueryRunner.changeColumns (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/driver/postgres/PostgresQueryRunner.ts:2249:13)\n    at RdbmsSchemaBuilder.updateExistColumns (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:947:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:228:9)\n    at RdbmsSchemaBuilder.build (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/schema-builder/RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (/Users/diegorichi/projects/minka_ZEF/minka_ZEF/src/data-source/DataSource.ts:335:9)","table":"account"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /transactions 200 75ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /transactions 200 69ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /transactions 200 65ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /projects 200 37ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 34839ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /transactions 200 106ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 59ms"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Server listening on port 3000"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Data Source has been initialized"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 73ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 71ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 67ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 36408ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"POST /transactions 200 6296ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 62ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"error","message":{}}
+{"level":"info","message":"POST /transactions 500 60ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /users/1 200 27ms"}
+{"level":"info","message":"Redis plugged in."}
+{"level":"info","message":"Update expires cache +60min:1"}
+{"level":"info","message":"GET /projects/1 200 39ms"}
