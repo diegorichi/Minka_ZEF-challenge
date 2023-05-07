@@ -49,6 +49,7 @@ export const verifyToken = (
                   );
                   res.status(401).json({ error: "Unauthorized" });
                 } else {
+                  //we should compare tokens here.
                   logger.info(`Update expires cache +60min:${id}`);
                   zefRedis.redisClient.expire(`authN_${id}`, 60 * 60);
                   next();
