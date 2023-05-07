@@ -12,6 +12,7 @@ import { verifyToken } from "../middleware/zef.middleware";
 import { body, validationResult } from "express-validator";
 import { TransactionService } from "../services/transaction.service";
 import { Logger } from "../utils/logger";
+import { ZEFRequest } from "../utils/ZEFRequest";
 
 @controller("")
 export class UserController {

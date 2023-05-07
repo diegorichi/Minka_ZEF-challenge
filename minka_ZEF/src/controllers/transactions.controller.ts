@@ -6,6 +6,7 @@ import { controller, httpGet, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
 import { TransactionService } from "../services/transaction.service";
 import { body, param, validationResult } from "express-validator";
+import { ZEFRequest } from "../utils/ZEFRequest";
 
 @controller("/transactions", verifyToken)
 export class TransactionController {
@@ -30,7 +31,7 @@ export class TransactionController {
       } else {
         return res.status(200).json(transaction);
       }
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -46,7 +47,7 @@ export class TransactionController {
     body("project").optional().isInt(),
   )
   public async createTransaction(
-    req: Request,
+    req: ZEFRequest,
     res: Response
   ): Promise<Response> {
     const errors = validationResult(req);
@@ -65,7 +66,7 @@ export class TransactionController {
       );
 
       return res.status(200).send(newTransaction);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err.message);
       return res.status(500).json({ error:err.message });
     }

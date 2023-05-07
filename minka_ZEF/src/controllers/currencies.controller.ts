@@ -12,6 +12,7 @@ import {
 import { inject } from "inversify";
 
 import { CurrencyService } from "../services/currency.service";
+import { ZEFRequest } from "../utils/ZEFRequest";
 
 @controller("/currencies", verifyToken)
 export class CurrencyController {
@@ -28,7 +29,7 @@ export class CurrencyController {
     try {
       const projects = await this.currencyService.findAll();
       return res.status(200).json(projects);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -46,7 +47,7 @@ export class CurrencyController {
       if (!currency) return res.status(404).send("not found");
 
       return res.status(200).send(currency);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -59,7 +60,7 @@ export class CurrencyController {
     body("parity").isFloat({ gt: 0 }),
     body("parity").notEmpty()
   )
-  public async createCurrency(req: Request, res: Response): Promise<Response> {
+  public async createCurrency(req: ZEFRequest, res: Response): Promise<Response> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -75,7 +76,7 @@ export class CurrencyController {
         userId
       );
       return res.status(200).send(currency);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -87,7 +88,7 @@ export class CurrencyController {
     body("quantity").isFloat(),
     body("quantity").notEmpty()
   )
-  public async updateCurrency(req: Request, res: Response) {
+  public async updateCurrency(req: ZEFRequest, res: Response) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -111,7 +112,7 @@ export class CurrencyController {
         return res.status(404).send("Currency not found");
       }
       return res.status(200).json(currency);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -128,7 +129,7 @@ export class CurrencyController {
       this.currencyService.deleteCurrency(id);
 
       return res.send("Currency deleted successfully");
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }

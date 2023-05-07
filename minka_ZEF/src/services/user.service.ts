@@ -68,6 +68,7 @@ export class UserService {
         domainOwner.user = savedUser;
         await domainOwner.save();
       }
+      
       delete savedUser.password;
 
       return savedUser;

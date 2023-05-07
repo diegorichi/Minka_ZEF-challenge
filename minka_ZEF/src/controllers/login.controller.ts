@@ -31,12 +31,12 @@ export class LoginController {
           if (err) {
             this.logger.debug("error verifying token");
           }
-          const {id} = user;
+          const {id} = user as any;
           this.logger.debug(`removing token from cache user_id: ${id}`);
           this.zefRedisClient.redisClient.del(`authN_${id}`);
         });
       }
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -95,7 +95,7 @@ export class LoginController {
       }
       this.logger.info(`inexistent user:${email}`);
       return res.status(401).json({ message: "Unauthorized" });
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }

@@ -5,9 +5,10 @@ import { User } from "../models/user.entity";
 import { FindOneOptions } from "typeorm";
 import { container } from "../index";
 import { Logger } from "../utils/logger";
+import { ZEFRequest } from "../utils/ZEFRequest";
 
 export const verifyToken = (
-  req: Request,
+  req: ZEFRequest,
   res: Response,
   next: NextFunction
 ) => {

@@ -59,6 +59,9 @@ the capacity of coding.
 - This solution is not a production ready. 
 - There are some coupling between services and repositories, but if we implement this in a MS environment, the service should depends on generics and no the details (solid principle). That allow us to modify this implementation in order to access some MS in charge of "users" or AuthZ/AuthN (as an example).
 - This solution uses Redis to cache the id of user (only that), and it's insecure as it. But this approach, allow us to scale horizontal the service, since this doesn't mantain any state.
+- The API contract such as a raml file is missing
+- Swagger is missing.
+- There is no documentation on the code. It should be there at least to explain briefly the most important implemetations.
 
 
 

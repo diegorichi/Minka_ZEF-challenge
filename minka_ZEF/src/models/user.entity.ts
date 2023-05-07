@@ -20,11 +20,11 @@ export class User extends BaseEntity {
   email!: string;
 
   @Column({ select: false })
-  password!: string;
+  password?: string;
 
   @BeforeInsert()
   hashPassword() {
     const md5 = crypto.createHash('md5');
-    this.password = md5.update(this.password).digest('hex');
+    this.password = md5.update(this.password!).digest('hex');
   }
 }

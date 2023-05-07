@@ -13,6 +13,7 @@ import {
 } from "inversify-express-utils";
 import { inject } from "inversify";
 import { ProjectService } from "../services/project.service";
+import { ZEFRequest } from "../utils/ZEFRequest";
 
 @controller("/projects", verifyToken)
 export class ProjectController {
@@ -26,7 +27,7 @@ export class ProjectController {
     body("currency").isInt(),
     body("currency").notEmpty()
   )
-  public async createProject(req: Request, res: Response): Promise<Response> {
+  public async createProject(req: ZEFRequest, res: Response): Promise<Response> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -47,7 +48,7 @@ export class ProjectController {
         return res.status(400).json();
       }
       return res.status(200).send(newProject);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json(err.message);
     }
@@ -58,7 +59,7 @@ export class ProjectController {
     try {
       const projects = await this.projectService.getProjects();
       return res.status(200).json(projects);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -78,7 +79,7 @@ export class ProjectController {
       } else {
         return res.status(200).json(project);
       }
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -95,7 +96,7 @@ export class ProjectController {
 
       await this.projectService.deleteProject(id);
       return res.status(200).send("Project deleted successfully");
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
@@ -117,7 +118,7 @@ export class ProjectController {
         transations
       );
       return res.status(200).json(updatedProject);
-    } catch (err) {
+    } catch (err:any) {
       this.logger.error(err);
       return res.status(500).json({ error:err.message });
     }
