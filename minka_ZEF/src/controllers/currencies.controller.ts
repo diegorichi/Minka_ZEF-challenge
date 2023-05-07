@@ -30,7 +30,7 @@ export class CurrencyController {
       return res.status(200).json(projects);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -48,7 +48,7 @@ export class CurrencyController {
       return res.status(200).send(currency);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -77,7 +77,7 @@ export class CurrencyController {
       return res.status(200).send(currency);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -113,7 +113,7 @@ export class CurrencyController {
       return res.status(200).json(currency);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -130,7 +130,7 @@ export class CurrencyController {
       return res.send("Currency deleted successfully");
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   };
 }

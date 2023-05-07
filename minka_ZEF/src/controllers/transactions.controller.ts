@@ -23,7 +23,7 @@ export class TransactionController {
     try {
       const { id } = req.params;
 
-      const transaction = await this.transactionService.getTransaction(id);
+      const transaction = await this.transactionService.getTransaction(parseInt(id));
 
       if (!transaction) {
         return res.status(404).send("Transaction not found");
@@ -32,7 +32,7 @@ export class TransactionController {
       }
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -66,8 +66,8 @@ export class TransactionController {
 
       return res.status(200).send(newTransaction);
     } catch (err) {
-      this.logger.error(err);
-      return res.status(500);
+      this.logger.error(err.message);
+      return res.status(500).json({ error:err.message });
     }
   }
 }

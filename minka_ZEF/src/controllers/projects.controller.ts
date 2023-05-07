@@ -60,7 +60,7 @@ export class ProjectController {
       return res.status(200).json(projects);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -80,7 +80,7 @@ export class ProjectController {
       }
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -97,7 +97,7 @@ export class ProjectController {
       return res.status(200).send("Project deleted successfully");
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 
@@ -119,7 +119,7 @@ export class ProjectController {
       return res.status(200).json(updatedProject);
     } catch (err) {
       this.logger.error(err);
-      return res.status(500).send("Internal server error");
+      return res.status(500).json({ error:err.message });
     }
   }
 }

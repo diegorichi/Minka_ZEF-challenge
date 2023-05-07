@@ -19,7 +19,7 @@ export class Account extends BaseEntity {
   balance!: number;
 
   @OneToMany(() => Transaction, (transaction) => transaction.id)
-  transations!: Transaction[];
+  transactions!: Transaction[];
 
   @OneToOne(() => User)
   @JoinColumn()

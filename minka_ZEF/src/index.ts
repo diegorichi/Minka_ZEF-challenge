@@ -28,13 +28,13 @@ export const TYPES = {
 dotenv.config();
 
 export const container = new Container();
-container.bind<CurrencyService>(CurrencyService).toSelf();
-container.bind<LoginService>(LoginService).toSelf();
-container.bind<ProjectService>(ProjectService).toSelf();
-container.bind<TransactionService>(TransactionService).toSelf();
-container.bind<UserService>(UserService).toSelf();
-container.bind<Logger>(Logger).toSelf();
-container.bind<ZEFRedisClient>(ZEFRedisClient).toSelf();
+container.bind<Logger>(Logger).toSelf().inSingletonScope();
+container.bind<ZEFRedisClient>(ZEFRedisClient).toSelf().inSingletonScope();
+container.bind<CurrencyService>(CurrencyService).toSelf().inSingletonScope();
+container.bind<LoginService>(LoginService).toSelf().inSingletonScope();
+container.bind<ProjectService>(ProjectService).toSelf().inSingletonScope();
+container.bind<TransactionService>(TransactionService).toSelf().inSingletonScope();
+container.bind<UserService>(UserService).toSelf().inSingletonScope();
 
 // Creación del servidor Express
 const server = new InversifyExpressServer(container);

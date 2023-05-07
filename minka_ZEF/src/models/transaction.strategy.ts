@@ -28,7 +28,7 @@ export class InvestmentStrategy implements TransactionStrategy {
 
     // if account does not have money
     if (Number(transaction.account.balance) - transaction.amount < 0) {
-      throw new Error("Insufficient funds.");
+      throw new Error("Insufficient accound funds.");
     }
     // I can invest only the available currency within the project
     if (
@@ -44,8 +44,8 @@ export class InvestmentStrategy implements TransactionStrategy {
       Number(transaction.project!.balance) +
       transaction.amount / Number(transaction.project!.currency.parity);
     transaction.project!.currency.totalAvailable =
-      transaction.project!.currency.totalAvailable -
-      transaction.amount / transaction.project!.currency.parity;
+      Number(transaction.project!.currency.totalAvailable) -
+      transaction.amount / Number(transaction.project!.currency.parity);
   }
 }
 
@@ -56,22 +56,14 @@ export class EarningStrategy implements TransactionStrategy {
 
     if (
       Number(transaction.project!.balance) -
-        (transaction.amount * Number(transaction.project!.currency.parity)) <
+        transaction.amount <
       0
     ) 
-      throw new Error("Insufficient currency available.");
-    
-      if (
-        Number(transaction.project?.currency?.totalAvailable) <
-        transaction.amount * Number(transaction.project!.currency.parity)
-      )
-        throw new Error("Insufficient currency available.");
-  
+      throw new Error("Insufficient project funds.");
 
     transaction.project!.balance = Number(transaction.project!.balance) -
-      transaction.amount * Number(transaction.project!.currency.parity);
-    transaction.account.balance = Number(transaction.account.balance) + transaction.amount;
-      transaction.project!.currency.totalAvailable = Number(transaction.project!.currency.totalAvailable)
-        transaction.amount * Number(transaction.project!.currency.parity);
+      transaction.amount;
+    transaction.account.balance = Number(transaction.account.balance) + transaction.amount * Number(transaction.project!.currency.parity);
+      transaction.project!.currency.totalAvailable = Number(transaction.project!.currency.totalAvailable) + transaction.amount;
   }
 }

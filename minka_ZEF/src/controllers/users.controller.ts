@@ -10,18 +10,24 @@ import {
 } from "inversify-express-utils";
 import { verifyToken } from "../middleware/zef.middleware";
 import { body, validationResult } from "express-validator";
+import { TransactionService } from "../services/transaction.service";
+import { Logger } from "winston";
 
-@controller("/users")
+@controller("")
 export class UserController {
-  constructor(@inject(UserService) private userService: UserService) {}
+  constructor(
+    //@inject(Logger) private logger: Logger,
+    @inject(UserService) private userService: UserService,
+    @inject(TransactionService) private transactionService: TransactionService,
+    ) {}
 
-  @httpGet("", verifyToken)
+  @httpGet("/users", verifyToken)
   public async getUsers(req: Request, res: Response): Promise<Response> {
     const users = await this.userService.getUsers();
     return res.json(users);
   }
 
-  @httpDelete("/:id", verifyToken)
+  @httpDelete("/users/:id", verifyToken)
   public async deleteUser(
     @requestParam("id") id: string,
     req: Request,
@@ -31,7 +37,7 @@ export class UserController {
     return res.json(users);
   }
 
-  @httpGet("/:id", verifyToken)
+  @httpGet("/users/:id", verifyToken)
   public async getUser(
     @requestParam("id") id: string,
     req: Request,
@@ -45,7 +51,7 @@ export class UserController {
   }
 
   @httpPost(
-    "",
+    "/users",
     body("name").isLength({ min: 3 }),
     body("role").custom(async (typedDeclaration, { req }) => {
       if (
@@ -76,8 +82,21 @@ export class UserController {
         type
       );
       return res.status(201).json(user);
-    } catch (error:any) {
-      return res.status(500).json({ error: error.message });
+    } catch (err) {
+      //this.logger.error(err);
+      return res.status(500).json({ error:err.message });
+    }
+  }
+
+  @httpGet("/balance", verifyToken)
+  public async getBalance(req: Request, res: Response): Promise<Response> {
+    try {
+      const userId = req.user ? req.user.id : undefined;
+      const balance = await this.transactionService.getBalanceFor(userId);
+      return res.status(200).json(balance);
+    } catch (err) {
+      //this.logger.error(err);
+      return res.status(500).json({ error:err.message });
     }
   }
 }

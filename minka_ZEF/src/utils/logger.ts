@@ -39,15 +39,17 @@ export class Logger {
 
     constructor() {
         const errorTransport = new winston.transports.File({
-            filename: '../logs/error.log',
+            filename: 'error.log',
             level: 'error',
+            format: this.formatter,
         });
 
         const transport = new winston.transports.Console({
             format: this.formatter,
         });
         const fileTransport = new winston.transports.File({ 
-            filename: 'app.log', options: { flags: 'a' } 
+            filename: 'app.log', options: { flags: 'a' },
+            format: this.formatter,
         });
 
         this.logger = winston.createLogger({

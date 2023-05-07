@@ -36,8 +36,9 @@ export class LoginController {
           this.zefRedisClient.redisClient.del(`authN_${id}`);
         });
       }
-    } catch (error) {
-      this.logger.error("something went wrong:" + error);
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).json({ error:err.message });
     }
     this.logger.debug("removing token from cache");
     res.clearCookie("access_token");
@@ -94,9 +95,9 @@ export class LoginController {
       }
       this.logger.info(`inexistent user:${email}`);
       return res.status(401).json({ message: "Unauthorized" });
-    } catch (error) {
-      this.logger.error(`something went wrong:${error}`);
-      return res.status(500).json({ error: "Error loggin in" });
+    } catch (err) {
+      this.logger.error(err);
+      return res.status(500).json({ error:err.message });
     }
   }
 }
