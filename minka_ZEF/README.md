@@ -55,15 +55,16 @@ the capacity of coding.
 - I choosed typescript because I think that it add types and provide more security.
 - Maybe some features could be missing described in ZEF, but I would like to discuss them before to reject the exercise.
 - I didn't implement enough testing to ensure a good coverage. This limitation is because I want to show how I know to write a test, since this is only an excercise.
-- I leave the log as it, so you shoudl see SQL querys in the console. Of course this shouldn't be there in production at least we have some problem.
+- I leave the log as it, so you should see SQL querys in the console. Of course this shouldn't be there in production at least we have some problem.
 - This solution is not a production ready. 
 - There are some coupling between services and repositories, but if we implement this in a MS environment, the service should depends on generics and no the details (solid principle). That allow us to modify this implementation in order to access some MS in charge of "users" or AuthZ/AuthN (as an example).
 - This solution uses Redis to cache the id of user (only that), and it's insecure as it. But this approach, allow us to scale horizontal the service, since this doesn't mantain any state.
 - The API contract such as a raml file is missing
 - Swagger is missing.
 - There is no documentation on the code. It should be there at least to explain briefly the most important implemetations.
-
-
+- I didn't use any branching scheme, since I'm the only one member and nobody will join me.
+- There is no pipeline defined.
+- No scaling, observability, and other aspects defined.
 
 ### Prerequisites
 
@@ -94,7 +95,9 @@ To run test just try
 
 ## 🎈 Usage <a name="usage"></a>
 
+To play with the exposed API, you can use the file in Root directory Minka_.postman_collection.json in order to import into postman.
 
+Also to load environments into postman you can use Local.postman_environment.json file
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
