@@ -58,9 +58,9 @@ export class Transaction extends BaseEntity {
   @Column({ type: "numeric", precision: 10, scale: 2 })
   amount!: number;
 
-  @ManyToOne(() => Account, {cascade:["update"]})
+  @ManyToOne(() => Account, { cascade: ["update"] })
   account!: Account;
 
-  @ManyToOne(() => Project, {cascade:["update"]})
+  @ManyToOne(() => Project, { cascade: ["update"] })
   project?: Project;
 }

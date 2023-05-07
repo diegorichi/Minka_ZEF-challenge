@@ -23,10 +23,14 @@ export class Project extends BaseEntity {
   @Column({ nullable: true })
   description!: string;
 
-  @ManyToOne(() => Member, { nullable: false, eager:true })
+  @ManyToOne(() => Member, { nullable: false, eager: true })
   owner!: Member;
 
-  @ManyToOne(() => Currency, { nullable: false, cascade:["update"], eager:true })
+  @ManyToOne(() => Currency, {
+    nullable: false,
+    cascade: ["update"],
+    eager: true,
+  })
   @JoinColumn()
   currency!: Currency;
 

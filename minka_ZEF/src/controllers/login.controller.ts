@@ -31,14 +31,14 @@ export class LoginController {
           if (err) {
             this.logger.debug("error verifying token");
           }
-          const {id} = user as any;
+          const { id } = user as any;
           this.logger.debug(`removing token from cache user_id: ${id}`);
           this.zefRedisClient.redisClient.del(`authN_${id}`);
         });
       }
-    } catch (err:any) {
+    } catch (err: any) {
       this.logger.error(err);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
     this.logger.debug("removing token from cache");
     res.clearCookie("access_token");
@@ -46,9 +46,10 @@ export class LoginController {
     return res.status(200).send({ message: "Logged out" });
   }
 
-  @httpPost("/login",
-  body("email").isEmail(),
-  body("password").isLength({min:6}),
+  @httpPost(
+    "/login",
+    body("email").isEmail(),
+    body("password").isLength({ min: 6 })
   )
   public async login(req: Request, res: Response): Promise<Response> {
     const errors = validationResult(req);
@@ -95,9 +96,9 @@ export class LoginController {
       }
       this.logger.info(`inexistent user:${email}`);
       return res.status(401).json({ message: "Unauthorized" });
-    } catch (err:any) {
+    } catch (err: any) {
       this.logger.error(err);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 }

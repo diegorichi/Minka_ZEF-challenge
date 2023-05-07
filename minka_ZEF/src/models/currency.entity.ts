@@ -27,6 +27,6 @@ export class Currency extends BaseEntity {
   @Column({ type: "numeric", precision: 10, scale: 4 })
   parity!: number;
 
-  @ManyToOne(() => User, {eager:true})
+  @ManyToOne(() => User, { eager: true })
   owner!: User;
 }

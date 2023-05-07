@@ -1,90 +1,87 @@
-import { injectable } from 'inversify';
-import winston from 'winston';
+import { injectable } from "inversify";
+import winston from "winston";
 
 @injectable()
 export class Logger {
-    private customLevels = {
-        levels: {
-            trace: 5,
-            debug: 4,
-            info: 3,
-            warn: 2,
-            error: 1,
-            fatal: 0,
-        },
-        colors: {
-            trace: 'blue',
-            debug: 'green',
-            info: 'green',
-            warn: 'yellow',
-            error: 'red',
-            fatal: 'red',
-        },
-    };
+  private customLevels = {
+    levels: {
+      trace: 5,
+      debug: 4,
+      info: 3,
+      warn: 2,
+      error: 1,
+      fatal: 0,
+    },
+    colors: {
+      trace: "blue",
+      debug: "green",
+      info: "green",
+      warn: "yellow",
+      error: "red",
+      fatal: "red",
+    },
+  };
 
-    private formatter = winston.format.combine(
-        winston.format.colorize(),
-        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-        winston.format.splat(),
-        winston.format.printf((info) => {
-            const { timestamp, level, message, ...meta } = info;
-            
-            return `${timestamp} [${level}]: ${message} ${
-                Object.keys(meta).length ? JSON.stringify(meta, null, 2) : ''
-            }`;
-        }),
-    );
+  private formatter = winston.format.combine(
+    winston.format.colorize(),
+    winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    winston.format.splat(),
+    winston.format.printf((info) => {
+      const { timestamp, level, message, ...meta } = info;
 
-    private logger: winston.Logger;
+      return `${timestamp} [${level}]: ${message} ${
+        Object.keys(meta).length ? JSON.stringify(meta, null, 2) : ""
+      }`;
+    })
+  );
 
-    constructor() {
-        const errorTransport = new winston.transports.File({
-            filename: 'error.log',
-            level: 'error',
-            format: this.formatter,
-        });
+  private logger: winston.Logger;
 
-        const transport = new winston.transports.Console({
-            format: this.formatter,
-        });
-        const fileTransport = new winston.transports.File({ 
-            filename: 'app.log', options: { flags: 'a' },
-            format: this.formatter,
-        });
+  constructor() {
+    const errorTransport = new winston.transports.File({
+      filename: "error.log",
+      level: "error",
+      format: this.formatter,
+    });
 
-        this.logger = winston.createLogger({
-            level: process.env.NODE_ENV === 'dev' ? 'trace' : 'error',
-            levels: this.customLevels.levels,
-            transports: [
-                transport,
-                fileTransport,
-                errorTransport
-            ],
-        });
-        winston.addColors(this.customLevels.colors);
-    }
+    const transport = new winston.transports.Console({
+      format: this.formatter,
+    });
+    const fileTransport = new winston.transports.File({
+      filename: "app.log",
+      options: { flags: "a" },
+      format: this.formatter,
+    });
 
-    public trace(msg: any, meta?: any) {
-        this.logger.log('trace', msg, meta);
-    }
-    
-    public debug(msg: any, meta?: any) {
-        this.logger.debug(msg, meta);
-    }
-      
-    public info(msg: any, meta?: any) {
-        this.logger.info(msg, meta);
-    }
-      
-    public warn(msg: any, meta?: any) {
-        this.logger.warn(msg, meta);
-    }
-      
-    public error(msg: any, meta?: any) {
-        this.logger.error(msg, meta);
-    }
-      
-    public fatal(msg: any, meta?: any) {
-        this.logger.log('fatal', msg, meta);
-    }
+    this.logger = winston.createLogger({
+      level: process.env.NODE_ENV === "dev" ? "trace" : "error",
+      levels: this.customLevels.levels,
+      transports: [transport, fileTransport, errorTransport],
+    });
+    winston.addColors(this.customLevels.colors);
+  }
+
+  public trace(msg: any, meta?: any) {
+    this.logger.log("trace", msg, meta);
+  }
+
+  public debug(msg: any, meta?: any) {
+    this.logger.debug(msg, meta);
+  }
+
+  public info(msg: any, meta?: any) {
+    this.logger.info(msg, meta);
+  }
+
+  public warn(msg: any, meta?: any) {
+    this.logger.warn(msg, meta);
+  }
+
+  public error(msg: any, meta?: any) {
+    this.logger.error(msg, meta);
+  }
+
+  public fatal(msg: any, meta?: any) {
+    this.logger.log("fatal", msg, meta);
+  }
 }

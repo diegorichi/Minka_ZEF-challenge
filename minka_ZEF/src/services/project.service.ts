@@ -2,16 +2,12 @@ import { injectable } from "inversify";
 import { FindOneOptions, Repository } from "typeorm";
 import { Project } from "../models/project.entity";
 import connectDB from "../utils/db.connection";
-import { Member, MemberType } from "../models/member.entity";
-import { Account } from "../models/account.entity";
-import { DomainOwner } from "../models/domainOwner.entity";
+import { Member } from "../models/member.entity";
 import { Currency } from "../models/currency.entity";
-import { User } from "../models/user.entity";
 import { Transaction } from "../models/transaction.entity";
 
 @injectable()
 export class ProjectService {
- 
   public async findOne(options: FindOneOptions<Project>) {
     return await this.projectRepository.findOne(options);
   }
@@ -27,11 +23,15 @@ export class ProjectService {
     return await this.projectRepository.delete({ id: parseInt(id) });
   }
 
-  private transactionRepository: Repository<Transaction> = connectDB.getRepository(Transaction);
+  private transactionRepository: Repository<Transaction> =
+    connectDB.getRepository(Transaction);
 
-  private projectRepository: Repository<Project> = connectDB.getRepository(Project);
-  private currencyRepository: Repository<Currency> = connectDB.getRepository(Currency);
-  private memberRepository: Repository<Member> = connectDB.getRepository(Member);
+  private projectRepository: Repository<Project> =
+    connectDB.getRepository(Project);
+  private currencyRepository: Repository<Currency> =
+    connectDB.getRepository(Currency);
+  private memberRepository: Repository<Member> =
+    connectDB.getRepository(Member);
 
   public async getProject(id: string) {
     return await this.projectRepository.findOneBy({ id: parseInt(id) });
@@ -46,11 +46,12 @@ export class ProjectService {
     name: string,
     userId: number,
     currency: number,
-    description: string,
-  ): Promise<Project> {    
-    const aMember = await this.memberRepository.findOneBy({user:{id:userId}});
-    if (!aMember)
-        throw new Error("Invalid arguments");
+    description: string
+  ): Promise<Project> {
+    const aMember = await this.memberRepository.findOneBy({
+      user: { id: userId },
+    });
+    if (!aMember) throw new Error("Invalid arguments");
     const projectFinded = await this.projectRepository.findOneBy({
       name,
       owner: { id: aMember?.id },
@@ -60,7 +61,7 @@ export class ProjectService {
       return projectFinded;
     } else {
       const aCurrency = await this.currencyRepository.findOneByOrFail({
-        id:currency
+        id: currency,
       });
 
       const project = new Project();
@@ -74,13 +75,19 @@ export class ProjectService {
     }
   }
 
-  public async updateProject(id: number, owner: number, currency: number, transations: any) {
-
+  public async updateProject(
+    id: number,
+    owner: number,
+    currency: number,
+    transations: any
+  ) {
     const aProject = await this.projectRepository.findOneByOrFail({ id });
-    const aCurrency = await this.currencyRepository.findOneByOrFail({ id: currency });
+    const aCurrency = await this.currencyRepository.findOneByOrFail({
+      id: currency,
+    });
     const aMember = await this.memberRepository.findOneByOrFail({ id: owner });
-    const aTransactions: Transaction[] = await this.transactionRepository.findBy({id:transations});
-
+    const aTransactions: Transaction[] =
+      await this.transactionRepository.findBy({ id: transations });
 
     aProject.owner = aMember;
     aProject.currency = aCurrency;
@@ -90,6 +97,4 @@ export class ProjectService {
 
     return updatedProject;
   }
-
-
 }

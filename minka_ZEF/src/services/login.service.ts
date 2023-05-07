@@ -6,13 +6,13 @@ import connectDB from "../utils/db.connection";
 @injectable()
 export class LoginService {
   public async deleteUser(id: string) {
-    return await this.userRepository.delete({id: parseInt(id) });
+    return await this.userRepository.delete({ id: parseInt(id) });
   }
 
   private userRepository: Repository<User> = connectDB.getRepository(User);
 
   public async getUser(id: string) {
-    return await this.userRepository.findOneBy({id: parseInt(id) });
+    return await this.userRepository.findOneBy({ id: parseInt(id) });
   }
 
   public async getUsers(): Promise<User[]> {

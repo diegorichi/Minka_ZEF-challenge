@@ -6,7 +6,7 @@ import {
   BeforeInsert,
 } from "typeorm";
 
-import crypto from 'crypto';
+import crypto from "crypto";
 
 @Entity()
 export class User extends BaseEntity {
@@ -24,7 +24,7 @@ export class User extends BaseEntity {
 
   @BeforeInsert()
   hashPassword() {
-    const md5 = crypto.createHash('md5');
-    this.password = md5.update(this.password!).digest('hex');
+    const md5 = crypto.createHash("md5");
+    this.password = md5.update(this.password!).digest("hex");
   }
 }

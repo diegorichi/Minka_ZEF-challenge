@@ -23,8 +23,7 @@ export class WithdrawStrategy implements TransactionStrategy {
 
 export class InvestmentStrategy implements TransactionStrategy {
   execute(transaction: Transaction): void {
-    if (!transaction.project)
-      throw new Error("invalid paramters");
+    if (!transaction.project) throw new Error("invalid paramters");
 
     // if account does not have money
     if (Number(transaction.account.balance) - transaction.amount < 0) {
@@ -51,19 +50,17 @@ export class InvestmentStrategy implements TransactionStrategy {
 
 export class EarningStrategy implements TransactionStrategy {
   execute(transaction: Transaction): void {
-    if (!transaction.project)
-      throw new Error("invalid paramters");
+    if (!transaction.project) throw new Error("invalid paramters");
 
-    if (
-      Number(transaction.project!.balance) -
-        transaction.amount <
-      0
-    ) 
+    if (Number(transaction.project!.balance) - transaction.amount < 0)
       throw new Error("Insufficient project funds.");
 
-    transaction.project!.balance = Number(transaction.project!.balance) -
-      transaction.amount;
-    transaction.account.balance = Number(transaction.account.balance) + transaction.amount * Number(transaction.project!.currency.parity);
-      transaction.project!.currency.totalAvailable = Number(transaction.project!.currency.totalAvailable) + transaction.amount;
+    transaction.project!.balance =
+      Number(transaction.project!.balance) - transaction.amount;
+    transaction.account.balance =
+      Number(transaction.account.balance) +
+      transaction.amount * Number(transaction.project!.currency.parity);
+    transaction.project!.currency.totalAvailable =
+      Number(transaction.project!.currency.totalAvailable) + transaction.amount;
   }
 }

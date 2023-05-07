@@ -33,7 +33,10 @@ container.bind<ZEFRedisClient>(ZEFRedisClient).toSelf().inSingletonScope();
 container.bind<CurrencyService>(CurrencyService).toSelf().inSingletonScope();
 container.bind<LoginService>(LoginService).toSelf().inSingletonScope();
 container.bind<ProjectService>(ProjectService).toSelf().inSingletonScope();
-container.bind<TransactionService>(TransactionService).toSelf().inSingletonScope();
+container
+  .bind<TransactionService>(TransactionService)
+  .toSelf()
+  .inSingletonScope();
 container.bind<UserService>(UserService).toSelf().inSingletonScope();
 
 // Creación del servidor Express
@@ -46,7 +49,6 @@ server.setConfig((app) => {
   app.get("/", (req, res) => {
     res.send("Welcome to ZEF!");
   });
-  
 });
 
 const app = server.build();

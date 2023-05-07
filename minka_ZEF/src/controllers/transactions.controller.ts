@@ -24,27 +24,32 @@ export class TransactionController {
     try {
       const { id } = req.params;
 
-      const transaction = await this.transactionService.getTransaction(parseInt(id));
+      const transaction = await this.transactionService.getTransaction(
+        parseInt(id)
+      );
 
       if (!transaction) {
         return res.status(404).send("Transaction not found");
       } else {
         return res.status(200).json(transaction);
       }
-    } catch (err:any) {
+    } catch (err: any) {
       this.logger.error(err);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 
   @httpPost(
     "",
-    body("type").isIn([TransactionType.INVESTMENT, TransactionType.EARNING,
-      TransactionType.DEPOSIT, TransactionType.WITHDRAW,
+    body("type").isIn([
+      TransactionType.INVESTMENT,
+      TransactionType.EARNING,
+      TransactionType.DEPOSIT,
+      TransactionType.WITHDRAW,
     ]),
     body("amount").isFloat(),
     body("amount").notEmpty(),
-    body("project").optional().isInt(),
+    body("project").optional().isInt()
   )
   public async createTransaction(
     req: ZEFRequest,
@@ -66,9 +71,9 @@ export class TransactionController {
       );
 
       return res.status(200).send(newTransaction);
-    } catch (err:any) {
+    } catch (err: any) {
       this.logger.error(err.message);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 }

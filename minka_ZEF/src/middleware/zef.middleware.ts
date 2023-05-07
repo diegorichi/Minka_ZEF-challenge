@@ -43,7 +43,7 @@ export const verifyToken = (
               }
             })
             .then((user) =>
-            zefRedis.redisClient.exists(`authN_${id}`).then((exists) => {
+              zefRedis.redisClient.exists(`authN_${id}`).then((exists) => {
                 if (exists !== 1) {
                   logger.error(
                     `Unauthorized: No user stored in cache id:${id}`

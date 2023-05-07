@@ -2,8 +2,6 @@ import { injectable } from "inversify";
 import { FindOneOptions, Repository } from "typeorm";
 import { Currency } from "../models/currency.entity";
 import connectDB from "../utils/db.connection";
-import { Member, MemberType } from "../models/member.entity";
-import { Account } from "../models/account.entity";
 import { DomainOwner } from "../models/domainOwner.entity";
 import { User } from "../models/user.entity";
 import { Transaction } from "../models/transaction.entity";
@@ -84,20 +82,17 @@ export class CurrencyService {
     quantity: number,
     parity: number
   ) {
-
-
     const user = await this.userRepository.findOneBy({ id: userId });
 
     const currency = await this.currencyRepository.findOneBy({
-      id
+      id,
     });
-    if (!currency)
-      return;
+    if (!currency) return;
 
-    if (user == currency.owner){
+    if (user == currency.owner) {
       currency.name = name ? name : currency.name;
       currency.code = code ? code : currency.code;
-      currency.parity = parity ? parity : currency.parity;  
+      currency.parity = parity ? parity : currency.parity;
     }
 
     const domainOwner = await this.domainOwnerRepository.findOneBy({

@@ -19,8 +19,8 @@ export class UserController {
   constructor(
     @inject(Logger) private logger: Logger,
     @inject(UserService) private userService: UserService,
-    @inject(TransactionService) private transactionService: TransactionService,
-    ) {}
+    @inject(TransactionService) private transactionService: TransactionService
+  ) {}
 
   @httpGet("/users", verifyToken)
   public async getUsers(req: Request, res: Response): Promise<Response> {
@@ -83,12 +83,11 @@ export class UserController {
         type
       );
       return res.status(201).json(user);
-    } catch (err:any) {
+    } catch (err: any) {
       this.logger.error(err);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
-
 
   @httpGet("/balance", verifyToken)
   public async getBalance(req: ZEFRequest, res: Response): Promise<Response> {
@@ -98,7 +97,7 @@ export class UserController {
       return res.status(200).json(balance);
     } catch (err: any) {
       this.logger.error(err);
-      return res.status(500).json({ error:err.message });
+      return res.status(500).json({ error: err.message });
     }
   }
 }

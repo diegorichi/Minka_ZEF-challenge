@@ -14,7 +14,7 @@ import { Account } from "./account.entity";
 
 export enum MemberType {
   INDIVIDUAL = "individual",
-  COMPANY = "company"
+  COMPANY = "company",
 }
 
 @Entity()

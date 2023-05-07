@@ -27,14 +27,17 @@ export class TransactionService {
         .setParameter("investment", TransactionType.INVESTMENT)
         .setParameter("earning", TransactionType.EARNING)
         .getRawMany(),
-      balance : await this.transactionRepository
+      balance: await this.transactionRepository
         .createQueryBuilder("transaction")
-        .select("SUM(CASE WHEN transaction.type = 'deposit' THEN transaction.amount WHEN transaction.type = 'withdraw' THEN -transaction.amount WHEN transaction.type = 'earning' THEN transaction.amount * currency.parity WHEN transaction.type = 'investment' THEN -transaction.amount ELSE 0 END)", "balance")
+        .select(
+          "SUM(CASE WHEN transaction.type = 'deposit' THEN transaction.amount WHEN transaction.type = 'withdraw' THEN -transaction.amount WHEN transaction.type = 'earning' THEN transaction.amount * currency.parity WHEN transaction.type = 'investment' THEN -transaction.amount ELSE 0 END)",
+          "balance"
+        )
         .leftJoin("transaction.project", "project")
         .leftJoin("project.currency", "currency")
         .where("transaction.userId = :userId", { userId })
-        .getRawOne()
-    };  
+        .getRawOne(),
+    };
 
     return result;
   }
