@@ -95,3 +95,21 @@ Also to load environments into postman you can use Local.postman_environment.jso
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@diegorichi](https://github.com/diegorichi) 
+
+
+## ✍️ Definitions <a name = "definitions"></a>
+
+- One member can fund a project with money in their account.
+- The account can receive external money and can withdraw money.
+- Each project is associated with a currency.
+- Each currency have parity with ZEF money (which is the main currency of accounts).
+- The currencies, don't have buy/sell prices, only we are managing a parity.
+- The operation investing, make the transfer from account to project taking into account the parity. The amount is in ZEF.
+- The operation earning, make the transfer from project to account taking into account the parity. The amount is in the project currency.
+- Only members can create projects.
+- Projects can be binded only with one currency.
+- One memeber or domain owner can create currency but only domain owner can issue the currency.
+- Members can buy only the quantity that the domain owner was issued, no more.
+- There are no negatives balances.
+- The balance shows the list of projects that I have been funds and the account balance.
+- 
