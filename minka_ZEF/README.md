@@ -20,6 +20,7 @@
 - [Usage](#usage)
 - [Technology Stack](#tech_stack)
 - [Authors](#authors)
+- [Definitions](#definitions)
 
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
 
