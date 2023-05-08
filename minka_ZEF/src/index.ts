@@ -6,7 +6,7 @@ import requestTimeLogger from "./utils/requestTimeLogger";
 import responseTime from "response-time";
 
 import { InversifyExpressServer } from "inversify-express-utils";
-import { Container } from "inversify";
+import { Container, decorate, injectable } from "inversify";
 import { Logger } from "./utils/logger";
 import { ZEFRedisClient } from "./utils/redis.connection";
 import "./controllers/users.controller";
@@ -19,6 +19,7 @@ import { ProjectService } from "./services/project.service";
 import { TransactionService } from "./services/transaction.service";
 import { LoginService } from "./services/login.service";
 import { UserService } from "./services/user.service";
+import { Repository } from "typeorm";
 
 export const TYPES = {
   Logger: Symbol.for("Logger"),
@@ -26,6 +27,8 @@ export const TYPES = {
 };
 
 dotenv.config();
+
+decorate(injectable(), Repository);
 
 export const container = new Container();
 container.bind<Logger>(Logger).toSelf().inSingletonScope();
@@ -51,7 +54,7 @@ server.setConfig((app) => {
   });
 });
 
-const app = server.build();
+export const app = server.build();
 
 const PORT = process.env.PORT || 3000;
 

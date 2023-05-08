@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { inject } from "inversify";
+import { LazyServiceIdentifer, inject } from "inversify";
 import { UserService } from "../services/user.service";
 import { controller, httpGet, httpPost } from "inversify-express-utils";
 import { verifyToken } from "../middleware/zef.middleware";
@@ -13,9 +13,9 @@ import { body, validationResult } from "express-validator";
 @controller("/auth")
 export class LoginController {
   constructor(
-    @inject(Logger) private logger: Logger,
-    @inject(UserService) private userService: UserService,
-    @inject(ZEFRedisClient) private zefRedisClient: ZEFRedisClient
+    @inject(new LazyServiceIdentifer(() => Logger)) private logger: Logger,
+    @inject(new LazyServiceIdentifer(() => UserService)) private userService: UserService,
+    @inject(new LazyServiceIdentifer(() => ZEFRedisClient)) private zefRedisClient: ZEFRedisClient
   ) {}
 
   @httpGet("/logout", verifyToken)
