@@ -1,22 +1,12 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
+ <img src="https://cloudinary.hbs.edu/hbsit/image/upload/s--hlT_tlm3--/f_auto,c_fill,h_375,w_750,/v20200101/81CEF22EA97699BEDA53300D8C8C190E.jpg" alt="Project logo"></a>
 </p>
-<h3 align="center">rest-express</h3>
-
-<div align="center">
-
-[![Hackathon](https://img.shields.io/badge/hackathon-name-orange.svg)](http://hackathon.url.com)
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
-
-</div>
+<h3 align="center">ZEF PRoject</h3>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> ZEF PRoject - Read https://github.com/diegorichi/Minka_ZEF-challenge/blob/main/zef.md
     <br> 
 </p>
 
@@ -25,13 +15,11 @@
 - [Problem Statement](#problem_statement)
 - [Idea / Solution](#idea)
 - [Dependencies / Limitations](#limitations)
-- [Future Scope](#future_scope)
 - [Setting up a local environment](#getting_started)
+- [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Technology Stack](#tech_stack)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
 
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
 
@@ -66,7 +54,7 @@ the capacity of coding.
 - There is no pipeline defined.
 - No scaling, observability, and other aspects defined.
 
-### Prerequisites
+## 🏁 Prerequisites <a name = "prerequisites"></a>
 
 - Have installed Docker.
 - Have installed NodeJS.
@@ -87,7 +75,7 @@ the capacity of coding.
 > npm run dev
 ```
 
-To run test just try
+To run test just try (not working)
 
 ```
 > npm test
@@ -101,20 +89,9 @@ Also to load environments into postman you can use Local.postman_environment.jso
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
+- [PostgreSQL](https://www.postgresql.org/) - Database
 - [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
-
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
-who participated in this project.
-
-## 🎉 Acknowledgments <a name = "acknowledgments"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- [@diegorichi](https://github.com/diegorichi) 
